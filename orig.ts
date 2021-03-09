@@ -22,7 +22,7 @@ class OriginalClassA {
     this.data1 = data1;
     this.data2 = data2;
     this.options = options;
-    this.newChange = new NewClassC();
+    this.newChange = new NewClassC(options.option3);
   }
 
   doX(optionX: boolean, option4: number = 0): void {
@@ -30,9 +30,7 @@ class OriginalClassA {
     // ...
 
     // new code
-    if (this.options.option3) {
-      this.newChange.newChangeForX(option4);
-    }
+    this.newChange.newChangeForX(option4);
   }
 
   doY(optionY: number, option5: string = ""): void {
@@ -61,7 +59,15 @@ class OriginalClassB {
 }
 
 class NewClassC {
+  option3: boolean;
+
+  constructor(option3: boolean = false) {
+    this.option3 = option3;
+  }
+
   newChangeForX(option4: number = 0) {
+    if (!this.option3) return;
+
     if (option4 > 0) {
       console.log("Do something new");
     } else {
