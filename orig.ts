@@ -1,17 +1,27 @@
-class OriginalClassA {
-  data1: string;
-  data2: number;
+// Wrapper for options of OriginalClassA
+class OptionsForA {
   option1: boolean;
   option2: number;
-  option3: boolean;
-  newChange: NewClassC;
+  option3: boolean = false;
 
-  constructor(data1: string, data2: number, option1: boolean, option2: number, option3: boolean = false) {
-    this.data1 = data1;
-    this.data2 = data2;
+  constructor({option1, option2, option3}: {option1: boolean, option2: number, option3: boolean}) {
     this.option1 = option1;
     this.option2 = option2;
     this.option3 = option3;
+    // Other validation logic
+  }
+}
+
+class OriginalClassA {
+  data1: string;
+  data2: number;
+  options: OptionsForA;
+  newChange: NewClassC;
+
+  constructor(data1: string, data2: number, options: OptionsForA) {
+    this.data1 = data1;
+    this.data2 = data2;
+    this.options = options;
     this.newChange = new NewClassC();
   }
 
@@ -20,7 +30,7 @@ class OriginalClassA {
     // ...
 
     // new code
-    if (this.option3) {
+    if (this.options.option3) {
       this.newChange.newChangeForX(option4);
     }
   }
