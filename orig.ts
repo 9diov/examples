@@ -5,7 +5,7 @@ class OriginalClassA {
   option2: number;
   option3: boolean;
 
-  constructor(data1: string, data2: number, option1: boolean, option2: number, option3: boolean) {
+  constructor(data1: string, data2: number, option1: boolean, option2: number, option3: boolean = false) {
     this.data1 = data1;
     this.data2 = data2;
     this.option1 = option1;
@@ -13,7 +13,7 @@ class OriginalClassA {
     this.option3 = option3;
   }
 
-  doX(optionX: boolean, option4: number): void {
+  doX(optionX: boolean, option4: number = 0): void {
     // old code
     // ...
 
@@ -27,14 +27,14 @@ class OriginalClassA {
     }
   }
 
-  doY(optionY: number, option5: string): void {
+  doY(optionY: number, option5: string = ""): void {
     const b = new OriginalClassB();
     b.doZ(option5);
   }
 }
 
 class OriginalClassB {
-  doZ(option5: string): void {
+  doZ(option5: string = ""): void {
     // old code
     let x = "hahaha";
 
